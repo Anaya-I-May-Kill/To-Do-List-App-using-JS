@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List App</title>
+
+    <style>
+      #mainThingy {
+        background-color: #57695d;
+        width: fit-content;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      #headThingy {
+        background-color: #f9f6f5;
+        width: fit-content;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 5px;
+      }
+
+      #bodyThingy {
+        background-color: #f9f6f5;
+        width: fit-content;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>To-Do List App</h3>
+
+    <form id="myForm">
+      <input type="text" id="myInput" />
+      <button>Add</button>
+    </form>
+
+    <div id="mainThingy">
+      <div id="headThingy">
+        <h3>My To-Do List</h3>
+      </div>
+      <div id="bodyThingy">
+        <ul id="myItem"></ul>
+      </div>
+    </div>
+
+    <script>
+      var myForm = document.getElementById("myForm");
+      var myInput = document.getElementById("myInput");
+      var myItem = document.getElementById("myItem");
+
+      myForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        createItem(myInput.value);
+      });
+
+      function createItem(inputItems) {
+        var items = `<li>${inputItems}
+                <button onclick="deleteElement(this)">Delete</button></li>`;
+        myItem.insertAdjacentHTML("beforeend", items);
+        myInput.value = "";
+        myInput.focus();
+      }
+
+      function deleteElement(ElementToDelete) {
+        ElementToDelete.parentElement.remove();
+      }
+    </script>
+  </body>
+</html>
