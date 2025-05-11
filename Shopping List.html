@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List App</title>
+  </head>
+  <body>
+    <div id="all">
+      <h3>To-Do List App</h3>
+
+      <form id="myForm">
+        <input type="text" id="myInput" placeholder="   Add your task" />
+        <button id="add">+</button>
+      </form>
+
+      <div id="mainThingy">
+        <div id="headThingy">
+          <h3>My To-Do List</h3>
+        </div>
+        <div id="bodyThingy">
+          <ul id="myItem"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var myForm = document.getElementById("myForm");
+      var myInput = document.getElementById("myInput");
+      var myItem = document.getElementById("myItem");
+
+      myForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        createItem(myInput.value);
+      });
+
+      function createItem(inputItems) {
+        var items = `
+            <div id="list">
+                <li>${inputItems}
+                <button id="del" onclick="deleteElement(this)">x</button></li>
+            </div><br>`;
+        myItem.insertAdjacentHTML("beforeend", items);
+        myInput.value = "";
+        myInput.focus();
+      }
+
+      function deleteElement(ElementToDelete) {
+        ElementToDelete.parentElement.remove();
+      }
+    </script>
+  </body>
+</html>
